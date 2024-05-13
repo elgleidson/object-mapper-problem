@@ -1,0 +1,19 @@
+{
+  "type": "record",
+  "name": "MyAvro",
+  "namespace": "com.github.elgleidson.jackson.problem",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string"
+    },
+    {
+      "name": "xTransactionId",
+      "type": "string",
+    },
+    {
+      "name": "xxTransactionId",
+      "type": "string"
+    }
+  ]
+}
