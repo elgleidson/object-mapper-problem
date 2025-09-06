@@ -104,6 +104,11 @@ class ObjectMapperTest {
 
       var actualJson = objectMapper.writeValueAsString(obj);
 
+      // Fails with:
+      // Expected: xTransactionId
+      //     but none found
+      // ;
+      //Unexpected: xtransactionId
       JSONAssert.assertEquals(expectedJson, actualJson, true);
     }
 
@@ -150,6 +155,11 @@ class ObjectMapperTest {
       objectMapper.addMixIn(MyAvro.class, IgnoreAvroFields.class);
       var actualJson = objectMapper.writeValueAsString(obj);
 
+      // Fails with:
+      // Expected: xTransactionId
+      //     but none found
+      // ;
+      //Unexpected: xtransactionId
       JSONAssert.assertEquals(expectedJson, actualJson, true);
     }
 
@@ -163,6 +173,10 @@ class ObjectMapperTest {
       }
       """;
 
+      // Fails with
+      // com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException:
+      // Unrecognized field "xTransactionId" (class com.github.elgleidson.jackson.problem.MyAvro), not marked as ignorable
+      // (3 known properties: "xxTransactionId", "id", "xtransactionId"])
       var actualObj = objectMapper.readValue(json, MyAvro.class);
 
       assertEquals("123", actualObj.getId(), "id");
